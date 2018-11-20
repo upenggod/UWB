@@ -2,6 +2,7 @@
 #include "delay.h"
 #include "sys.h"
 #include "usart.h"
+#include "timer.h"
 #include "spi.h"
 
 #include "port.h"
@@ -403,6 +404,7 @@ int main(void)
 	uart_init(115200);	 //串口初始化为115200 	
 	GPIO_Configuration();//初始化与LED连接的硬件接口
 	SPI_Configuration();
+	TIM3_PWM_Init(899,0);//初始化PWM同步脉冲
 	peripherals_init();
 
 	Sleep(1000);
