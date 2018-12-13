@@ -42,6 +42,8 @@ uint8_t sendTWRRawReports = 1;
 u8 SendBuff[130];
 u8 USB_RxBuff[30];
 
+double T2ATD;
+
 typedef struct
 {
     uint8 channel ;
