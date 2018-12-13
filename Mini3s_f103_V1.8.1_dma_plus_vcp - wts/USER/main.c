@@ -613,6 +613,7 @@ int main(void)
 //							USB_TxWrite(SendBuff, 130);
 //							memcpy((u8*)SendBuff, (u8*)usbVCOMout, 65);
             }
+						/*½ûÖ¹anchor to anchor RangeReport
             else //anchor to anchor ranging
             {
             	n = sprintf((char*)&SendBuff[0], "ma %02x %08x %08x %08x %08x %04x %02x %08x a0:%d\r\n",
@@ -625,6 +626,7 @@ int main(void)
 //														l, instancegetrnumanc(0), rangeTime, aaddr);
 //							USB_TxWrite(SendBuff, 65);
             }
+						*/
             instancecleardisttableall();
         }
 				
