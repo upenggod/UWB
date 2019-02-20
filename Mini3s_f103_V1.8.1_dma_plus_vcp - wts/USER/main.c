@@ -2,8 +2,8 @@
 #include "delay.h"
 #include "sys.h"
 #include "usart.h"
-#include "timer.h"
 #include "spi.h"
+#include "timer.h"
 
 #include "port.h"
 #include "instance.h"
@@ -41,8 +41,6 @@ uint8_t sendTWRRawReports = 1;
 
 u8 SendBuff[130];
 u8 USB_RxBuff[30];
-
-double T2ATD;
 
 typedef struct
 {
@@ -406,8 +404,9 @@ int main(void)
 	uart_init(115200);	 //串口初始化为115200 	
 	GPIO_Configuration();//初始化与LED连接的硬件接口
 	SPI_Configuration();
-	TIM3_PWM_Init(899,0);//初始化PWM同步脉冲
 	peripherals_init();
+	
+	TIM4_PWM_Init(899,0);//初始化PWM同步脉冲
 
 	Sleep(1000);
 	Flash_Configuration();//存放AT指令对模块设置的命令
@@ -505,7 +504,7 @@ int main(void)
 //		
  	while(1)
 	{
-
+	
 			
     	int monitor_local = instance_data[0].monitor ;
     	int txdiff = (portGetTickCnt() - instance_data[0].timeofTx);
@@ -615,7 +614,6 @@ int main(void)
 //							USB_TxWrite(SendBuff, 130);
 //							memcpy((u8*)SendBuff, (u8*)usbVCOMout, 65);
             }
-						/*禁止anchor to anchor RangeReport
             else //anchor to anchor ranging
             {
             	n = sprintf((char*)&SendBuff[0], "ma %02x %08x %08x %08x %08x %04x %02x %08x a0:%d\r\n",
@@ -628,7 +626,6 @@ int main(void)
 //														l, instancegetrnumanc(0), rangeTime, aaddr);
 //							USB_TxWrite(SendBuff, 65);
             }
-						*/
             instancecleardisttableall();
         }
 				
@@ -660,7 +657,6 @@ int main(void)
 				{
 					USB_TxWrite(buff_version, 19);					
 				}
-				
 	}	
 	
 }
